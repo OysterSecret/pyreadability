@@ -2,6 +2,7 @@ import re
 import string
 import pkg_resources
 import os
+import nltk
 
 DATA_PATH = pkg_resources.resource_filename('pyreadability', 'data/')
 
@@ -83,6 +84,20 @@ class SimpleWordTokenizer(WordTokenizer):
 
     def tokenize(self, sentence):
         return sentence.split()
+
+class NLTKSentenceTokenizer(SentenceTokenizer):
+    def __init__(self):
+        pass
+
+    def tokenize(self, text):
+        return nltk.sent_tokenize(text)
+
+class NLTKWordTokenizer(WordTokenizer):
+    def __init__(self):
+        pass
+
+    def tokenize(self, sentence):
+        return nltk.word_tokenize(sentence)
 
 
 class Readability(object):
